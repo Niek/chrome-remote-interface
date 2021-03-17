@@ -27,35 +27,31 @@
         "node": ">=8"
     },
     "dependencies": {
-        "commander": "2.11.x",
-        "ws": "^7.2.0"
+        "commander": "7.1.x",
+        "ws": "^7.4.4"
     },
     "files": [
         "lib",
         "bin",
         "index.js",
-        "chrome-remote-interface.js",
-        "webpack.config.js"
+        "chrome-remote-interface.js"
     ],
     "bin": {
         "chrome-remote-interface": "./bin/client.js"
     },
     "main": "index.js",
-    "browser": "chrome-remote-interface.js",
+    "browser": {
+        "ws": "./lib/websocket-wrapper.js"
+    },
     "devDependencies": {
-        "babel-core": "^6.26.3",
-        "babel-loader": "6.x.x",
-        "babel-polyfill": "^6.26.0",
-        "babel-preset-env": "^1.7.0",
-        "eslint": "^4.19.1",
-        "json-loader": "^0.5.4",
-        "mocha": "^5.2.0",
-        "webpack": "^4.35.3",
-        "webpack-cli": "^3.3.6"
+        "@esbuild-plugins/node-modules-polyfill": "0.0.2",
+        "esbuild": "^0.9.3",
+        "eslint": "^7.22.0",
+        "json-loader": "^0.5.7",
+        "mocha": "^8.3.2"
     },
     "scripts": {
         "test": "./scripts/run-tests.sh",
-        "webpack": "webpack",
-        "prepare": "webpack"
+        "prepare": "node build.js"
     }
 }
