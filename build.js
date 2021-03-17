@@ -2,11 +2,14 @@
 'use strict';
 
 require('esbuild').build({
-    plugins: [require('@esbuild-plugins/node-modules-polyfill').NodeModulesPolyfillPlugin()],
+    inject: [
+        require.resolve('@esbuild-plugins/node-globals-polyfill/process'),
+    ],
     entryPoints: ['index.js'],
     bundle: true,
-    define: {'global': 'window'},
     sourcemap: true,
+    define: {'global': 'window'},
+    globalName: 'CDP',
     minify: true,
     outfile: 'chrome-remote-interface.js',
 }).catch(() => process.exit(1));
